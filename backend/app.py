@@ -18,7 +18,7 @@ except ConnectionFailure as e:
     print("MongoDB connection failed:", e)
     
 db = client["flask_mongodb"]
-collection = db["user"]
+user_collection = db["user"]
 
 app = Flask(__name__)
 
@@ -79,7 +79,7 @@ def submit():
     # get json data from the request if it exists
     if json_data:
         data = json.loads(json_data)    # parse the json data to python dict
-        collection.insert_one(data)     # insert the data into the MongoDB collection
+        user_collection.insert_one(data)     # insert the data into the MongoDB user_collection
         return {"status_code": 200}
     else:
         return {"status_code": 400}
